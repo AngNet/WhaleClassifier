@@ -10,6 +10,14 @@ var app = express();
 
 var PythonShell = require('python-shell');
 
+var options = {
+  mode: 'text',
+  // pythonPath: './',
+  // pythonOptions: ['-u'],
+  // scriptPath: 'path/to/my/scripts',
+  // args: ['value1', 'value2', 'value3']
+};
+
 
 
 
@@ -45,14 +53,26 @@ app.post('/upload', function(req, res) {
       return res.status(500).send(err);
 
         }
+
         console.log("about to");
-        PythonShell.run('animal_classify.py', function (err) {
-            console.log("in");
-          if (err) console.log( err);
-          console.log('finished');
+
+        PythonShell.run('animal_classify.py', options, function (err, results) {
+             console.log("in");
+            if (err) console.log(err);
+            // results is an array consisting of messages collected during execution
+            console.log('results: %j', results);
+            res.send('File uploaded!');
         });
 
-    res.send('File uploaded!');
+        // PythonShell.run('animal_classify.py',{options: "sudo"}, function (err) {
+        //     console.log("in");
+        //   if (err) console.log( err);
+        //   console.log('finished');
+        //   console.log('results: %j', results);
+        //
+        // });
+
+
   });
 });
 

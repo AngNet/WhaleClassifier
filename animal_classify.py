@@ -155,7 +155,7 @@ if __name__ == '__main__':
     filePath = "./imgs/"
     fileName = "filename.jpg"#sys.argv[1]
     finalFile = filePath + fileName
-    print("hehehe")
+    # print("hehehe")
     w1 = open(finalFile, 'rb').read()
     w1 = base64.encodestring(w1)
     print execute(w1)
