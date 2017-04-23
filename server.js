@@ -18,13 +18,19 @@ app.get('/testGet', function(req, res){
 
 });
 
-//------update score all the user score---------------
-//IN: {userName:’someone’, score:1000}
+
 app.post('/testPost', function(req, res){
   'use strict';
 
       console.log('Data');
       res.json('send some DATA!');
-});//end score update
+});
+
+app.post('/testPost', function(req, res){
+  'use strict';
+
+      console.log('Data');
+      res.json('send some DATA!');
+});
 
 app.listen(port,'0.0.0.0',function(){console.log('!---- AWESOME SAUCE listening in '+ port+' ----!');});
