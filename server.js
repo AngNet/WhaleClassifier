@@ -34,7 +34,7 @@ app.post('/upload', function(req, res) {
 
   // Use the mv() method to place the file somewhere on your server
 
-  sampleFile.mv('./imgs/'+name, function(err) {
+  sampleFile.mv('./imgs/'+sampleFile.name+'.jpg', function(err) {
     if (err)
       return res.status(500).send(err);
 
