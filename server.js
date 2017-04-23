@@ -4,9 +4,14 @@ var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var router = express.Router();
 
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 8080;
 
 var app = express();
+
+var PythonShell = require('python-shell');
+
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -23,7 +28,7 @@ app.get('/testGet', function(req, res){
 
 // post image to server and save it as filename.jpg
 app.post('/upload', function(req, res) {
-	console.log(req.files);
+	// console.log("hey");
   if (!req.files)
   {
   	console.log("no file");
@@ -34,13 +39,24 @@ app.post('/upload', function(req, res) {
 
   // Use the mv() method to place the file somewhere on your server
 
-  sampleFile.mv('./imgs/'+sampleFile.name+'.jpg', function(err) {
+  sampleFile.mv('./imgs/filename.jpg' , function(err) {
     if (err)
+    {
       return res.status(500).send(err);
+
+        }
+        console.log("about to");
+        PythonShell.run('animal_classify.py', function (err) {
+            console.log("in");
+          if (err) console.log( err);
+          console.log('finished');
+        });
 
     res.send('File uploaded!');
   });
 });
+
+
 
 
 
