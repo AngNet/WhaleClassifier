@@ -8,5 +8,11 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "busboy": "^0.2.14",
+    "express": "^4.15.2",
+    "express-fileupload": "^0.1.2"
+  }
 }
