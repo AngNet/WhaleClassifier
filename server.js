@@ -1,18 +1,18 @@
 //include requirement
-const express = require('express');
-const fileUpload = require('express-fileupload');
-const bodyParser = require('body-parser');
-const router = express.Router();
+var express = require('express');
+var fileUpload = require('express-fileupload');
+var bodyParser = require('body-parser');
+var router = express.Router();
 
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 
-const app = express();
+var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(fileUpload());
 
-app.use('/', express.static('public'));
+app.use('/', express.static(__dirname + '/public'));
 
 // simple get method
 app.get('/testGet', function(req, res){
@@ -30,7 +30,7 @@ app.post('/upload', function(req, res) {
     return res.status(400).send('No files were uploaded.');
  	}
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
-  let sampleFile = req.files.sampleFile;
+  var sampleFile = req.files.sampleFile;
  
   // Use the mv() method to place the file somewhere on your server 
   sampleFile.mv('./imgs/filename.jpg', function(err) {
